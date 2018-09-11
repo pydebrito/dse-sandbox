@@ -6,3 +6,5 @@ val df_e =spark.read.format("com.datastax.bdp.graph.spark.sql.edge").option("gra
 
 val df_gc = df_e.select("dst").withColumnRenamed("dst","src").union(df_e.select("src")).groupBy("src").count().withColumnRenamed("count","degree")
 val df_merged = df_v.drop("degree").join(df_gc,$"id" === $"src").drop("src")
+
+g.updateVertices(df_merged.select("id","~label","degree"))
