@@ -1,0 +1,8 @@
+val g = spark.dseGraph("graph_ip")
+
+val df_v =spark.read.format("com.datastax.bdp.graph.spark.sql.vertex").option("graph","graph_ip").load() //optional .filter(col("~label") === "event")
+val df_e =spark.read.format("com.datastax.bdp.graph.spark.sql.edge").option("graph","graph_ip").load()
+
+
+val df_gc = df_e.select("dst").withColumnRenamed("dst","src").union(df_e.select("src")).groupBy("src").count().withColumnRenamed("count","degree")
+val df_merged = df_v.drop("degree").join(df_gc,$"id" === $"src").drop("src")
