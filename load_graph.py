@@ -4,6 +4,9 @@ import datetime
 
 start = datetime.datetime.now()
 print(datetime.datetime.now()-start)
+
+#the input file is a csv with source & destination vertices for each edge (separator: ',')
+#I got a test graph from here : https://snap.stanford.edu/data/#socnets
 #the input file has to be copied to dse fs beforehand :
 #>dse fs
 #dsefs> put file:/home/py/data/graphs/soc-LiveJournal1_clean.txt soc-LiveJournal1_clean.txt
@@ -69,5 +72,7 @@ edges.show()
 print(edges.count())
 
 print(str(datetime.datetime.now()-start)+":end")
+
+#parking lot
 #df = spark.read.format('json').load('python/test_support/sql/people.json')
 
