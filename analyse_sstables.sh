@@ -1,0 +1,1 @@
+for f in *Data.db; do meta=$(sstablemetadata $f); echo -e "Max:" $(date --date=@$(echo "$meta" | grep Maximum\ time | cut -d" "  -f3| cut -c 1-10) '+%m/%d/%Y') "Min:" $(date --date=@$(echo "$meta" | grep Minimum\ time | cut -d" "  -f3| cut -c 1-10) '+%m/%d/%Y') $(echo "$meta" | grep droppable) ' \t ' $(ls -lh $f | awk '{print $5" "$6" "$7" "$8" "$9}'); done | sort
