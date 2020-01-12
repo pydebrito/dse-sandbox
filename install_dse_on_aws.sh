@@ -34,3 +34,10 @@ sudo mkfs.gfs2 -plock_nolock -j 1 /dev/striped_vol_group/striped_logical_volume
 #pb here : unknown file system: GFS2 
 
 
+wget "dse download address"
+unzip graph-labs.zip
+tar -zxvf datastax-studio-6.8.0.20190912-LABS.tar.gz
+tar -zxvf dse-6.8.0.20190911-LABS-bin.tar.gz
+
+#on AWS console, click on security group
+#add custom TCP rule to enable 9091 inbound requests for Studio
